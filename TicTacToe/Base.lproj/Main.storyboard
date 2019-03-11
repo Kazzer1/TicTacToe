@@ -170,7 +170,7 @@
                         <outlet property="UIview7" destination="PBn-7S-r0H" id="sce-Pf-kZR"/>
                         <outlet property="UIview8" destination="VBC-IQ-nbk" id="jx8-M8-DzX"/>
                         <outlet property="UIview9" destination="zas-2V-5c3" id="m46-1Q-PCs"/>
-                        <outlet property="userMessage" destination="ScU-t1-yMH" id="3yS-z0-vzi"/>
+                        <outlet property="userMessage" destination="ScU-t1-yMH" id="I7A-dN-rbh"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

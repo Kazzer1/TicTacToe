@@ -42,7 +42,7 @@ class ViewController: UIViewController {
     
     @IBAction func UIButtonClicked(_ sender:UIButton) {
         userMessage.isHidden = true
-        if !(plays[sender.tag] != nil) == nil && !aiDeciding && !done{
+        if plays[sender.tag] != nil && !aiDeciding && !done{
             setImageForSpot(spot:sender.tag, player:1)
         }
         
@@ -104,16 +104,15 @@ class ViewController: UIViewController {
     func checkForWin(){
         var whoWon = ["I":0,"you":1]
         for(key,value) in whoWon {
-            if((plays[7] = value && plays[8] = 0, value && plays[9] = value) ||
-                (plays[4] = value && plays[5] = 0, value && plays[6] = value) ||
-                (plays[1] = value && plays[2] = 0, value && plays[3] = value) ||
-                (plays[1] = value && plays[4] = 0, value && plays[7] = value) ||
-                (plays[2] = value && plays[5] = 0, value && plays[8] = value) ||
-                (plays[3] = value && plays[6] = 0, value && plays[9] = value) ||
-                (plays[1] = value && plays[4] = 0, value && plays[7] = value) ||
-                (plays[1] = value && plays[5] = 0, value && plays[9] = value) ||
-                (plays[3] = value && plays[5] = 0, value && plays[7] = value)){
-                userMessage.ishidden = false
+            if((plays[7] == value && plays[8] == value && plays[9] == value) ||
+                (plays[4] == value && plays[5] == value && plays[6] == value) ||
+                (plays[1] == value && plays[2] == value && plays[3] == value) ||
+                (plays[1] == value && plays[4] == value && plays[7] == value) ||
+                (plays[2] == value && plays[5] == value && plays[8] == value) ||
+                (plays[3] == value && plays[6] == value && plays[9] == value) ||
+                (plays[1] == value && plays[5] == value && plays[9] == value) ||
+                (plays[3] == value && plays[5] == value && plays[7] == value)){
+                userMessage.isHidden = false
                 userMessage.text = "Looks like someone won!"
                 Reset.isHidden = false
                 done = true
