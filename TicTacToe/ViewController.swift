@@ -11,15 +11,15 @@ import UIKit
 class ViewController: UIViewController {
 
     @IBOutlet var Grid1: UIImageView!
-    @IBOutlet var UIview1: UIImageView!
-    @IBOutlet var UIview2: UIImageView!
-    @IBOutlet var UIview3: UIImageView!
-    @IBOutlet var UIview4: UIImageView!
-    @IBOutlet var UIview5: UIImageView!
-    @IBOutlet var UIview6: UIImageView!
-    @IBOutlet var UIview7: UIImageView!
-    @IBOutlet var UIview8: UIImageView!
-    @IBOutlet var UIview9: UIImageView!
+    @IBOutlet var UIview1 : UIImageView!
+    @IBOutlet var UIview2 : UIImageView!
+    @IBOutlet var UIview3 : UIImageView!
+    @IBOutlet var UIview4 : UIImageView!
+    @IBOutlet var UIview5 : UIImageView!
+    @IBOutlet var UIview6 : UIImageView!
+    @IBOutlet var UIview7 : UIImageView!
+    @IBOutlet var UIview8 : UIImageView!
+    @IBOutlet var UIview9 : UIImageView!
     
     
     @IBOutlet var Button1 : UIButton!
@@ -40,18 +40,20 @@ class ViewController: UIViewController {
     var done = false
     var aiDeciding = false
     
+    // What happens when the user clicks the button
     @IBAction func UIButtonClicked(_ sender:UIButton) {
         userMessage.isHidden = true
-        if plays[sender.tag] != nil && !aiDeciding && !done{
+        if !aiDeciding && !done{
             setImageForSpot(spot:sender.tag, player:1)
         }
-        
+    
         checkForWin()
         
         aiTurn()
     }
     
-    func setImageForSpot(spot:Int,player:Int){
+    // function to set the image on the spot the player clicked on
+    func setImageForSpot(spot:Int, player:Int){
         let playerMark = player == 1 ? "X" : "O"
         plays[spot] = player
         switch spot {
@@ -76,8 +78,26 @@ class ViewController: UIViewController {
         default:
             UIview1.image = UIImage(named: playerMark)
         }
-
-        
+    }
+    
+    //checks if the player has won
+    func checkForWin(){
+        var whoWon = ["I":0,"you":1]
+        for(key,value) in whoWon {
+            if((plays[7] == value && plays[8] == value && plays[9] == value) ||
+                (plays[4] == value && plays[5] == value && plays[6] == value) ||
+                (plays[1] == value && plays[2] == value && plays[3] == value) ||
+                (plays[1] == value && plays[4] == value && plays[7] == value) ||
+                (plays[2] == value && plays[5] == value && plays[8] == value) ||
+                (plays[3] == value && plays[6] == value && plays[9] == value) ||
+                (plays[1] == value && plays[5] == value && plays[9] == value) ||
+                (plays[3] == value && plays[5] == value && plays[7] == value)){
+                userMessage.isHidden = false
+                userMessage.text = "Looks like someone won!"
+                Reset.isHidden = false
+                done = true
+            }
+        }
     }
     @IBAction func resetBtnClicked(_ sender:UIButton ) {
         done = false
@@ -100,25 +120,7 @@ class ViewController: UIViewController {
         UIview9.image = nil
         
     }
-    //checks if the player has won
-    func checkForWin(){
-        var whoWon = ["I":0,"you":1]
-        for(key,value) in whoWon {
-            if((plays[7] == value && plays[8] == value && plays[9] == value) ||
-                (plays[4] == value && plays[5] == value && plays[6] == value) ||
-                (plays[1] == value && plays[2] == value && plays[3] == value) ||
-                (plays[1] == value && plays[4] == value && plays[7] == value) ||
-                (plays[2] == value && plays[5] == value && plays[8] == value) ||
-                (plays[3] == value && plays[6] == value && plays[9] == value) ||
-                (plays[1] == value && plays[5] == value && plays[9] == value) ||
-                (plays[3] == value && plays[5] == value && plays[7] == value)){
-                userMessage.isHidden = false
-                userMessage.text = "Looks like someone won!"
-                Reset.isHidden = false
-                done = true
-            }
-        }
-    }
+   
     
     func aiTurn(){
         
